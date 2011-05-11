@@ -1,0 +1,11 @@
+<% content_for :title do%>
+  <%= @profile.subject.name %>
+<%end%>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'users/sidebar_index' %>
+<% end %>
+
+<% toolbar :profile => @profile.subject %>
+
+<%= render :partial => "profile" %>

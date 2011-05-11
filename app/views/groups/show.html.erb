@@ -1,0 +1,23 @@
+<% content_for :title do %>
+  <%= @group.name%>
+<% end %>
+<% content_for :description do %>
+  <%= @group.profile.description%>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'sidebar_show' %>
+<% end %>
+
+<% toolbar :profile => @group %>
+
+<%= render :partial => 'location' %>
+
+<br class="clearfloat" />
+<div class="space_center">
+</div>
+
+<div class="space_center">
+</div>
+
+<%= render :partial => 'activities/walls', :locals => { :owner => @group } %>

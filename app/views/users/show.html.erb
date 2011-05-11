@@ -1,0 +1,24 @@
+<% content_for :title do %>
+  <%= @user.name%>
+<% end %>
+
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'sidebar_index' %>
+<% end %>
+
+<% toolbar :profile => @user %>
+
+<%= render :partial => 'location' %>
+
+<br class="clearfloat" />
+<div class="space_center">
+</div>
+
+<%= render :partial => "users/groups",
+           :locals  => { :user => @user } %>
+
+<%= render :partial => "activities/index",
+           :locals  => { :activities => @user.wall(:profile, :for => current_subject).
+                                              paginate(:page => params[:page]),
+                         :owner => @user } %>
