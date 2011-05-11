@@ -1,0 +1,11 @@
+<div class= "block">
+  <div class = "content">
+  <%= form_for Photo.new,:html => { :multipart => true} do |f| %>
+  <div class="form_row">
+  	<%= f.file_field :photo %>
+	  <%= f.submit "Upload", :class => "button" %>
+  </div>
+  <div id= "prueba">
+  </div>
+  <% end %>
+</div></div>

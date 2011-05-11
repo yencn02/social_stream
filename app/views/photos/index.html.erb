@@ -1,0 +1,17 @@
+<% toolbar %>
+<% content_for :title do%>
+  <%= current_subject.name %>
+<% end%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'home/sidebar' %>
+<% end %>
+
+<%= location(
+	link_to(image_tag("btn/btn_photo.png", :class => "menu_icon")+ "Photos", photos_path)
+) %>
+
+<br class="clearfloat" />
+<div class="space_center"></div>
+<div class="space_center"></div>
+<h3 style="padding-left: 25px;">Select an image file on your computer.</h3>
+<%= render :partial => 'form' %>
