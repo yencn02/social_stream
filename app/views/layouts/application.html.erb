@@ -1,14 +1,57 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>SocialStream</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title><%= yield(:title).empty? ? t('socialstream') : yield(:title)%></title>
+    <meta name="keywords" content="SNA, social, stream, activity" >
+    <meta name="description" content= <%= yield(:description).empty? ? "" : yield(:description) %> >
+    
+    <%= stylesheet_link_tag "base", "header","home","footer",
+                             :media => "screen, projection" %>
+    <%= javascript_include_tag 'jquery.min', 'jquery-ui.min','rails', 'jquery.livequery', 'ui.dropdownchecklist'%>
 
-<%= yield %>
+    <%= yield :headers %>
 
-</body>
+    <link rel="shortcut icon" href="/images/icons/favicon.ico" />
+    <% if protect_against_forgery? %>
+      <%= csrf_meta_tag %>
+    <% end %>
+
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+        <%= yield :javascript %>
+      })
+    </script>
+  </head>
+  <body>
+    <p class="notice" style="display:none;"><%= notice %></p>
+    <p class="alert" style="display:none;"><%= alert %></p>
+    <div id="wrapper">
+      <%= render :partial => "layouts/header" %>
+      <div id="wrapper_body">
+        <div id="toolbar">
+          <div id="toolbarContent" class="block">
+            <div class="space_center">
+            </div>
+              <%= yield :toolbar %>
+          </div>
+        </div>
+        <div id="content">
+          <% flash.each do |name, msg| %>
+            <div class="<%= name %>">
+            <%= msg %>
+            </div>
+          <% end %>
+          <%= yield %>
+        </div>
+        <div id="sidebar">
+          <div id="sidebarContent">
+              <%=  yield :sidebar %>
+          </div>
+        </div>
+        <div class="space_center white"></div>
+      </div>
+      <%= render :partial => "layouts/footer" %>
+    </div>
+  </body>
 </html>
