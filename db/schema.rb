@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110513073019) do
+ActiveRecord::Schema.define(:version => 20110514193353) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -94,6 +94,18 @@ ActiveRecord::Schema.define(:version => 20110513073019) do
     t.datetime "updated_at",                 :null => false
   end
 
+  create_table "docs", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.string   "title"
+    t.string   "description"
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.integer  "doc_file_size"
+    t.datetime "doc_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "groups", :force => true do |t|
     t.integer  "actor_id"
     t.datetime "created_at"
@@ -127,6 +139,18 @@ ActiveRecord::Schema.define(:version => 20110513073019) do
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
+
+  create_table "pdfs", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.string   "title"
+    t.string   "description"
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "permissions", :force => true do |t|
     t.string   "action"
