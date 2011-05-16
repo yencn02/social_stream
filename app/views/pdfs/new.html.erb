@@ -1,0 +1,21 @@
+<% toolbar :option => :media %>
+<% content_for :title do%>
+  <%= current_subject.name %>
+<% end%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'home/sidebar' %>
+<% end %>
+
+<%= location(
+  link_to(image_tag("btn/btn_pdf.jpeg", :class => "menu_icon")+ "PDF Files", pdfs_path)
+) %>
+
+<br class="clearfloat" />
+
+<div id="conversation">
+  <h2>New PDF File</h2>
+  <%= render 'form' %>
+  <div style="float:right; padding-right: 30px;">
+    <%= link_to 'All PDFs', pdfs_path %>
+  </div>
+</div>

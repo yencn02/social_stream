@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511072132) do
+ActiveRecord::Schema.define(:version => 20110513073019) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -102,6 +102,18 @@ ActiveRecord::Schema.define(:version => 20110511072132) do
 
   add_index "groups", ["actor_id"], :name => "index_groups_on_actor_id"
 
+  create_table "musics", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.string   "title"
+    t.string   "music_file_name"
+    t.string   "music_content_type"
+    t.integer  "music_file_size"
+    t.datetime "music_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+  end
+
   create_table "notifications", :force => true do |t|
     t.string   "type"
     t.text     "body"
@@ -126,7 +138,8 @@ ActiveRecord::Schema.define(:version => 20110511072132) do
 
   create_table "photos", :force => true do |t|
     t.integer  "activity_object_id"
-    t.text     "text"
+    t.string   "title"
+    t.text     "description"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -206,6 +219,12 @@ ActiveRecord::Schema.define(:version => 20110511072132) do
   add_index "relations", ["ancestry"], :name => "index_relations_on_ancestry"
   add_index "relations", ["sphere_id"], :name => "index_relations_on_sphere_id"
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "spheres", :force => true do |t|
     t.string   "name"
     t.integer  "actor_id"
@@ -270,10 +289,21 @@ ActiveRecord::Schema.define(:version => 20110511072132) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "actor_id"
+    t.integer  "role_id"
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "video_links", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "link"
+    t.text     "embed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   add_foreign_key "activities", "activity_verbs", :name => "index_activities_on_activity_verb_id"
 

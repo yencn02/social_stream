@@ -1,0 +1,38 @@
+<% toolbar :option => :media %>
+<% content_for :title do%>
+  <%= current_subject.name %>
+<% end%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'home/sidebar' %>
+<% end %>
+
+<%= location(
+  link_to(image_tag("btn/btn_pdf.jpeg", :class => "menu_icon")+ "PDF Files", pdfs_path)
+) %>
+
+<br class="clearfloat" />
+
+<div id="conversation">
+  <h2>PDF Details</h2>
+  <!-- START OF THE PLAYER EMBEDDING TO COPY-PASTE -->
+  <div style="padding:30px;">
+    <div class="form_row">
+      <label>Title:</label> <b><%= @pdf.title %></b>
+    </div>
+    <div class="form_row">
+      <label>Description:</label> <%= @pdf.description %>
+    </div>
+    <div class="form_row">
+      <label>File name: </label> <%= link_to @pdf.pdf_file_name, @pdf.pdf.url %>
+    </div>
+    <div class="form_row">
+      <label>Updated at:</label> <%= @pdf.pdf_updated_at %>
+    </div>
+  </div>
+
+  <!-- END OF THE PLAYER EMBEDDING -->
+  <div style="float:right; padding-right: 30px;">
+    <%= link_to 'Edit', edit_pdf_path(@pdf) %> |
+    <%= link_to 'All PDF Files', pdfs_path %>
+  </div>
+</div>

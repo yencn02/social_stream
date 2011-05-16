@@ -30,7 +30,7 @@ class Group < ActiveRecord::Base
       Actor.find_by_slug(_founder) || raise("Cannot create group without founder")
 
     sent_ties.create! :receiver => founder,
-                      :relation => relations.sort.first
+                      :relation => relation_customs.sort.first
   end
   
   #Creates the ties betwbeen the group and the participants
@@ -40,10 +40,10 @@ class Group < ActiveRecord::Base
     
      @_participants.each do |participant|
       
-      participant_actor = Actor.find_by_id(participant.to_i)
+      participant_actor = Actor.find_by_slug!(participant)
 
       sent_ties.create! :receiver => participant_actor,
-                        :relation => relations.sort.first
+                        :relation => relation_customs.sort.first
      end
   end
 end

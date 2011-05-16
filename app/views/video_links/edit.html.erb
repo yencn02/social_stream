@@ -1,0 +1,23 @@
+<% toolbar :option => :media %>
+<% content_for :title do%>
+  <%= current_subject.name %>
+<% end%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'home/sidebar' %>
+<% end %>
+
+<%= location(
+  link_to(image_tag("btn/btn_video.gif", :class => "menu_icon")+ "Video Link", video_links_path)
+) %>
+
+<br class="clearfloat" />
+
+<div id="conversation">
+  <h2>Editing Video Link</h2>
+  <%= render 'form' %>
+  <div style="float:right; padding-right: 30px;">
+    <%= link_to 'Show', @video_link %> |
+    <%= link_to 'All photos', video_links_path %>
+  </div>
+</div>
+

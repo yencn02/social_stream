@@ -1,0 +1,41 @@
+<% toolbar :option => :media %>
+<% content_for :title do%>
+  <%= current_subject.name %>
+<% end%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'home/sidebar' %>
+<% end %>
+
+<%= location(
+  link_to(image_tag("btn/btn_photo.png", :class => "menu_icon")+ "Photos", photos_path)
+) %>
+
+<br class="clearfloat" />
+
+<div id="conversation">
+  <h2>Photo Details</h2>
+  <!-- START OF THE PLAYER EMBEDDING TO COPY-PASTE -->
+  <div style="padding:30px;">
+    <div class="form_row">
+      <label>Title:</label> <b><%= @photo.title %></b>
+    </div>
+    <div class="form_row">
+      <label>Updated at:</label> <%= @photo.photo_updated_at %>
+    </div>
+    <div class="form_row" style ="padding-top: 15px; padding-bottom: 15px;">
+      <div id="mediaplayer">
+        <img src="<%= @photo.photo.url %>" alt="<%= @photo.title %>" width="500"/>
+      </div>
+    </div>
+    <div class="form_row">
+      <%= @photo.description %>
+    </div>
+  </div>
+
+  <!-- END OF THE PLAYER EMBEDDING -->
+  <div style="float:right; padding-right: 30px;">
+    <%= link_to 'Download', @photo.photo.url %> |
+    <%= link_to 'Edit', edit_photo_path(@photo) %> |
+    <%= link_to 'All Photos', photos_path %>
+  </div>
+</div>

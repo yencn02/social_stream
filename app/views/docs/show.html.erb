@@ -1,0 +1,38 @@
+<% toolbar :option => :media %>
+<% content_for :title do%>
+  <%= current_subject.name %>
+<% end%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'home/sidebar' %>
+<% end %>
+
+<%= location(
+  link_to(image_tag("btn/btn_doc.jpeg", :class => "menu_icon")+ "Doc Files", docs_path)
+) %>
+
+<br class="clearfloat" />
+
+<div id="conversation">
+  <h2>Doc Details</h2>
+  <!-- START OF THE PLAYER EMBEDDING TO COPY-PASTE -->
+  <div style="padding:30px;">
+    <div class="form_row">
+      <label>Title:</label> <b><%= @doc.title %></b>
+    </div>
+    <div class="form_row">
+      <label>Description:</label> <%= @doc.description %>
+    </div>
+    <div class="form_row">
+      <label>File name: </label> <%= link_to @doc.doc_file_name, @doc.doc.url %>
+    </div>
+    <div class="form_row">
+      <label>Updated at:</label> <%= @doc.doc_updated_at %>
+    </div>
+  </div>
+
+  <!-- END OF THE PLAYER EMBEDDING -->
+  <div style="float:right; padding-right: 30px;">
+    <%= link_to 'Edit', edit_doc_path(@doc) %> |
+    <%= link_to 'All Doc Files', docs_path %>
+  </div>
+</div>

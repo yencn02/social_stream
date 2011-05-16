@@ -1,0 +1,20 @@
+<li>
+  <%= link_to( image_tag("btn/btn_media.png", :class => "menu_icon")+ "Media Files", '#', :id => "media_menu") %>
+  <ul>
+    <li>
+      <%= link_to( image_tag("btn/btn_photo.png", :class => "menu_icon")+ "Photos", photos_path) %>
+    </li>
+    <li>
+      <%= link_to( image_tag("btn/btn_music.gif", :class => "menu_icon")+ "Musics", musics_path) %>
+    </li>
+    <li>
+      <%= link_to( image_tag("btn/btn_video.gif", :class => "menu_icon")+ "Video Links", video_links_path) %>
+    </li>
+    <li>
+      <%= link_to( image_tag("btn/btn_pdf.jpeg", :class => "menu_icon")+ "PDF files", pdfs_path) %>
+    </li>
+    <li>
+      <%= link_to( image_tag("btn/btn_doc.jpeg", :class => "menu_icon")+ "Doc files", docs_path) %>
+    </li>
+  </ul>
+</li>

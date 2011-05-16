@@ -1,63 +1,78 @@
-SocialStream::Application.routes.draw do
+Sosialisation::Application.routes.draw do
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+  root :to => "frontpage#index"
+  
+  match 'home' => 'home#index', :as => :home
+  match 'home' => 'home#index', :as => :user_root # devise after_sign_in_path_for
+  
+  ##API###
+  match 'api/keygen' => 'api#create_key', :as => :api_keygen
+  match 'api/user/:id' => 'api#users'
+  match 'api/me' => 'api#users'
+  match 'api/me/home/' => 'api#activity_atom_feed', :format => 'atom', :as => :api_my_home
+  match 'api/user/:id/home' => 'api#activity_atom_feed', :format => 'atom'
+  ##/API##
+  
+  # Webfinger
+  match '.well-known/host-meta',:to => 'frontpage#host_meta'
+  
+  # Social Stream subjects configured in config/initializers/social_stream.rb
+  SocialStream.subjects.each do |actor|
+    resources actor.to_s.pluralize do
+      resource :like
+      resource :profile
+      resources :activities
+    end
+  end
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  resources :spheres
+  namespace "relation" do
+    resources :customs
+  end
+  resources :permissions
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  match 'contacts' => 'contacts#index', :as => 'contacts'
+  match 'tags'     => 'tags#index', :as => 'tags'
+  
+  # Find subjects by slug
+  match 'subjects/lrdd/:id' => 'subjects#lrdd', :as => 'subject_lrdd'
+  
+  resource :representation
+  
+    #resources :avatars
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :messages
+  
   resources :photos
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => "welcome#index"
-  root :to => "home#index"
   
-  # See how all your routes lay out with "rake routes"
+  resources :musics
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id(.:format)))'
+  resources :video_links
+
+  resources :pdfs
+
+  resources :docs
+
+  resources :conversations
   
+  resources :notifications
+
+  resources :comments
+
+  resources :ties do
+    collection do
+      get 'suggestion'
+    end
+  end
+  
+  resources :activities do
+    resource :like
+  end
+  
+  
+  # Social Stream objects configured in config/initializers/social_stream.rb
+  (SocialStream.objects - [ :actor ]).each do |object|
+    resources object.to_s.pluralize
+  end
 end

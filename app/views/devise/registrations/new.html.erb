@@ -19,6 +19,11 @@
       <div class="form_label"><%= f.label :password_confirmation %></div>
       <div class="form_field"><%= f.password_field :password_confirmation, :class =>"field_x"  %></div>
     </div>
+
+    <div class="form_row">
+      <div class="form_label"><%= f.label :role_id, "User Type" %></div>
+      <div class="form_field"><%= f.collection_select :role_id, Role.all, :id, :name %></div>
+    </div>
     <div class="form_row center">
       <div id="btn_login"><%= f.submit t('action.accept').capitalize,:class=>"myButton"  %></div>
     </div>

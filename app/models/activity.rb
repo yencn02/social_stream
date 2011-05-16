@@ -28,7 +28,6 @@ class Activity < ActiveRecord::Base
   has_many :activity_objects,
            :through => :activity_object_activities
 
-  after_create :send_notifications
   
   scope :wall, lambda { |type, ties|
     q = select("DISTINCT activities.*").
@@ -45,9 +44,14 @@ class Activity < ActiveRecord::Base
     q
   }
 
+  after_create :send_notifications
+
   # After an activity is created, it is disseminated to follower ties
   attr_accessor :_tie
   after_create :disseminate_to_ties
+
+  after_create  :increment_like_count
+  after_destroy :decrement_like_count
 
   # The name of the verb of this activity
   def verb
@@ -145,31 +149,19 @@ class Activity < ActiveRecord::Base
   end
   
   def notificable?
-    return true if is_root?
-    return true if ['post','update'].include? root.verb
-    #return false if ['follow','like','make_friend'].include? root.verb #Not necessary 
-    return false 
+    is_root? or ['post','update'].include?(root.verb)
   end
-  
+    
   def notify
     return nil if !notificable?
-        #Avaible verbs: follow, like, make-friend, post, update
-    case verb
-    when 'like'
-      #Like a SUBJECT
-      
-      #Like an OBJECT
-      
-    when 'follow','make_friend'
-      #Follow or Make friend with a SUBJECT
-      receipts = _tie.receiver.notify(I18n.t("activity.verb." + verb + "." + _tie.receiver_subject.class.to_s + ".notification.subject", :name => _tie.sender.name),
-      I18n.t("activity.verb." + verb + "." + _tie.receiver_subject.class.to_s + ".notification.body", :name => _tie.sender.name))
-    when 'post','update'
-      #Post or udapte an OBJECT
-      if _tie.sender!=_tie.receiver
-        receipts = _tie.receiver.notify(I18n.t("activity.verb." + verb + "." + _tie.receiver_subject.class.to_s + ".notification.subject", :name => _tie.sender.name, :direct_object => direct_object.class.to_s),
-        I18n.t("activity.verb." + verb + "." + _tie.receiver_subject.class.to_s + ".notification.body", :name => _tie.sender.name, :direct_object => direct_object.class.to_s))        
-      end      
+    #Avaible verbs: follow, like, make-friend, post, update        
+    actionview = ActivitiesController.new.view_context    
+    if ['like','follow','make-friend','post','update'].include? verb and _tie.sender!=_tie.receiver  
+        notification_subject = actionview.render :partial => 'notifications/activities/' + verb + "_subject", :locals => {:activity => self}
+        notification_body = actionview.render :partial =>  'notifications/activities/' + verb + "_body", :locals => {:activity => self}
+    end 
+    if notification_subject.present? and notification_body.present?
+      receipts = _tie.receiver.notify(notification_subject, notification_body)
     end
   end
 
@@ -181,11 +173,26 @@ class Activity < ActiveRecord::Base
     tie_activities.create!(:tie => _tie)
   end
 
-
-  private
-
   #Send notifications to actors based on proximity, interest and permissions
   def send_notifications
     notify
+  end
+
+  # after_create callback
+  #
+  # Increment like counter in objects with a like activity
+  def increment_like_count
+    return if verb != "like" || direct_activity_object.blank?
+
+    direct_activity_object.increment!(:like_count)
+  end
+
+  # after_destroy callback
+  #
+  # Decrement like counter in objects when like activity is destroyed
+  def decrement_like_count
+    return if verb != "like" || direct_activity_object.blank?
+
+    direct_activity_object.decrement!(:like_count)
   end
 end

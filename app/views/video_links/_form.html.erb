@@ -1,0 +1,42 @@
+<%= form_for(@video_link, :class => "new_message", :html => { :multipart => true}) do |f| %>
+  <% if @video_link.errors.any? %>
+  <div class="error">
+    <h2><%= pluralize(@video_link.errors.count, "error") %> prohibited this message from being sent:</h2>
+      <ul>
+        <% @video_link.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+  </div>
+  <% end %>
+  <div class="block">
+    <div class="form_row">
+      <%= label_tag :title %>
+    </div>
+    <div class="form_row">
+      <%= f.text_field :title, :class => "required form_tag" %>
+    </div>
+    <div class="form_row">
+      <%= label_tag "Video link" %>
+    </div>
+    <div class="form_row">
+      <%= f.text_field :link, :class => "required form_tag" %>
+    </div>
+    <div class="form_row">
+      <%= label_tag "Embed Video" %>
+    </div>
+    <div class="form_row">
+      <%= f.text_area :embed, {:rows =>6, :cols=> 53, :class => "required form_tag", :maxlength => 5000} %>
+    </div>
+    <div class="form_row">
+      <%= label_tag "Description" %>
+    </div>
+    <div class="form_row" id="ck_editor" >
+      <%= f.text_area :description, {:rows =>6, :cols=> 53, :class => "required form_tag", :maxlength => 5000} %>
+    </div>
+    <div class="actions center">
+      <%= submit_tag "Upload", :name => :send_message, :class => "button" %>
+    </div>
+  </div>
+
+<% end %>

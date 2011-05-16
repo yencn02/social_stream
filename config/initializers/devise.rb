@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
+  config.mailer_sender = "webmaster@Scholarshipsofrthearts.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -54,7 +54,7 @@ Devise.setup do |config|
   config.stretches = 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = "762e757ed7d562ce763319b8b8aedafa7eff573acb2234818e60c7617d8dc5df5d02b135526754a5382a9292eada8cc1eb1e7323dba8b99f36deb92e178996b8"
+  # config.pepper = "c1f297057cde546be4171af764d5e6cf336a257177456ec52472569ea24f1f2098a40e54d89bcad2741ea2b9afe445681491c008dfce72652ba77cea0a06f167"
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
@@ -181,14 +181,29 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  config.omniauth :linked_in, "ekxfXU8nueVSMQ9fc5KJAryBkyztUlCBYMW3DoQPzbE79WhivvzhQloRNHCHgPeB", "WYiHFT-KKFgjd45W3-pEAficmXRHmN6_6DGwj1C_ZILJlSO1gBvv6VNYXU9tybGY"
-                      
-  config.omniauth :facebook, "129571360447856","eef39dce5e20e76f77495c59623bdb38"
-                      
+  #config.omniauth :linked_in, "ekxfXU8nueVSMQ9fc5KJAryBkyztUlCBYMW3DoQPzbE79WhivvzhQloRNHCHgPeB", "WYiHFT-KKFgjd45W3-pEAficmXRHmN6_6DGwj1C_ZILJlSO1gBvv6VNYXU9tybGY"
+
+  config.omniauth :linked_in, "1UDBJ6FcJ6BphRulc5_Y_n1TETgt9cFNfTj9SB1IKWy4_xoIg3BFhN16VE_B7vTH", "VhWvRGiRHychZ_vCwh7UjlVH2DbSVOqm5dT-olBbw2Bgx2uoh568GMeiTN0NOla8"
+
+
+  #config.omniauth :facebook, "129571360447856","eef39dce5e20e76f77495c59623bdb38"
+
+  #dev mode:
+  config.omniauth :facebook, "74610884509","a96a6075d44be4f32e8eaa9797ee5fd3"
+  config.omniauth :twitter, "3wY2A225nqE9kEdonz38Gw","7UjrkIMuWt6HLppAVr4YacUW5Ol3tZrZNm0zwUJYIPs"
+  #prod mode
+  #config.omniauth :facebook, "173903390244","8de1523593cfe851b7567b1c244c6803"
+
   #config.omniauth :twitter, "wgTxO0fTpjTeSnjKC9ZHA","JepulVWwLcuAnGfWjwCu47yEP0TcJJfKtvISPBsilI"
-                      
+
+
+  #prod mode
+  #config.omniauth :facebook, "173903390244","8de1523593cfe851b7567b1c244c6803"
+
+  #config.omniauth :twitter, "wgTxO0fTpjTeSnjKC9ZHA","JepulVWwLcuAnGfWjwCu47yEP0TcJJfKtvISPBsilI"
+
   config.token_authentication_key = :auth_token
-                      
+
   config.stateless_token = true
 
   # ==> Warden configuration
@@ -201,3 +216,4 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
 end
+

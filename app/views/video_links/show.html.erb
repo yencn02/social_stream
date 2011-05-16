@@ -1,0 +1,41 @@
+<% toolbar :option => :media %>
+<% content_for :title do%>
+  <%= current_subject.name %>
+<% end%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'home/sidebar' %>
+<% end %>
+
+<%= location(
+  link_to(image_tag("btn/btn_video.gif", :class => "menu_icon")+ "Video Links", video_links_path)
+) %>
+
+<br class="clearfloat" />
+
+<div id="conversation">
+  <h2>Video Link Details</h2>
+  <!-- START OF THE PLAYER EMBEDDING TO COPY-PASTE -->
+  <div style="padding:30px;">
+    <div class="form_row">
+      <label>Title:</label> <b><%= @video_link.title %></b>
+    </div>
+    <div class="form_row">
+      <label>Updated at:</label> <%= @video_link.updated_at %>
+    </div>
+    <div class="form_row" style ="padding-top: 15px; padding-bottom: 15px;">
+      <div id="mediaplayer">
+        <%= raw @video_link.embed %>
+      </div>
+    </div>
+    <div class="form_row">
+      <%= @video_link.description %>
+    </div>
+  </div>
+
+  <!-- END OF THE PLAYER EMBEDDING -->
+  <div style="float:right; padding-right: 30px;">
+    <%= link_to 'Go to Link', @video_link.link %> |
+    <%= link_to 'Edit', edit_video_link_path(@video_link) %> |
+    <%= link_to 'All Video Links', video_links_path %>
+  </div>
+</div>

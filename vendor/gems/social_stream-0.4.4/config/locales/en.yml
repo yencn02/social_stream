@@ -1,0 +1,309 @@
+en:
+  actor:
+    name: "Name"
+  action:
+    send: "Send"
+    accept: "Accept"
+  account:
+    one: "Account"
+  activity:
+    confirm_delete: "Delete activity?"
+    delete: "Delete"
+    input: "What do you do?"
+    last: "Last Activities"
+    like: "I like"
+    one: "Activity"
+    other: "Activities"
+    to_comment: "Comment"
+    unlike: "I do not like anymore"
+    verb:
+        follow:
+          User:
+            title: "%{subject} added %{contact} as contact."
+            message: "%{name} added you as contact."
+            notification:
+              subject: "%{name} added you as contact."
+              body: "%{name} added you as contact."
+          Group:
+            title: "%{subject} added %{contact} as contact."
+            message: "%{name} added you as contact."
+            notification:
+              subject: "%{name} added you as contact."
+              body: "%{name} added you as contact."
+        like:
+          User:
+            title: "%{subject} is a fan of %{contact}."
+            message: "%{name} is now your fan."
+            notification:
+              subject: "%{name} is now your fan."
+              body: "%{name} is now your fan."
+          Group:
+            title: "%{subject} is a fan of %{contact}."
+            message: "%{name} is now your fan."
+            notification:
+              subject: "%{name} is now your fan."
+              body: "%{name} is now your fan."
+        make-friend:
+          User:
+            title: "%{subject} and %{contact} are now connected."
+            message: "%{name} also added you as contact."
+            notification:
+              subject: "%{name} also added you as contact."
+              body: "%{name} also added you as contact."
+          Group:
+            title: "%{subject} added %{contact} as contact."
+            message: "%{name} added you as contact."
+            notification:
+              subject: "%{name} added you as contact."
+              body: "%{name} added you as contact."
+        post:
+          User:
+            notification:
+              subject: "%{name} has posted something(%{direct_object}) in your wall"
+              body: "%{name} has posted something(%{direct_object}) in your wall"
+          Group:
+            notification:
+              subject: "%{name} has posted %{direct_object} in your wall"
+              body: "%{name} has posted something(%{direct_object}) in your wall"
+        update:
+          User:
+            notification:
+              subject: "%{name} has updated %{direct_object} in your wall"
+              body: "%{name} has updated something(%{direct_object}) in your wall"
+          Group:
+            notification:
+              subject: "%{name} has updated %{direct_object} in your wall"
+              body: "%{name} has updated something(%{direct_object}) in your wall"
+             
+  avatar:
+    crop_image: "Crop the uploaded image"
+    crop_submit: "Crop image"
+    destroy: "Delete"
+    destroy_sure: "Are you sure you wan't to delete the selected avatar?"
+    error:
+      no_file: "You have to select a file"
+      no_image_file: "The file you uploaded isn't valid, it must be an image file"
+    list: "You have these avatars"
+    new: "Create a new avatar"
+    new_short: "New avatar"
+    no_avatars: "You haven't any avatar, plesase create a new one."
+    one: "Avatar"
+    other: "Avatars"
+    original: "Original image"
+    preview: "Preview"
+    profile_change: "Change your avatar"
+    set_default: "Set as default"
+    set_default_sure: "Are you sure you wan't to set this avatar as default?"
+    text:
+      new: "... or upload a new one"
+      use: "Use your saved avatars ..."
+    upload: "Upload"
+  browse: "Browse"
+  button:
+    cancel: "Cancel"
+    update: "Update"
+  comment:
+    input: "Write a comment..."
+    confirm_delete: "Delete comment?"
+  contact:
+    all_n: "All contacts (%{count})"
+    edit:
+      submit: "Edit Contact"
+    new:
+      link: "+ Add contact"
+      title: "Add %{name} as contact"
+      submit: "Add Contact"
+    one: "Contact"
+    other: "Contacts"
+  copyright: "2010 Copyright - All rights reserved"
+  days: Days
+  delete:
+    confirm: Delete %{element}}?
+  devise:
+    confirmations:
+      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      confirmed: 'Your account was successfully confirmed. You are now signed in.'
+    failure:
+      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unconfirmed: 'You have to confirm your account before continuing.'
+      locked: 'Your account is locked.'
+      invalid: 'Invalid email or password.'
+      invalid_token: 'Invalid authentication token.'
+      timeout: 'Your session expired, please sign in again to continue.'
+      inactive: 'Your account was not activated yet.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Confirmation instructions'
+      reset_password_instructions:
+        subject: 'Reset password instructions'
+      unlock_instructions:
+        subject: 'Unlock Instructions'
+    registrations:
+      signed_up: 'You have signed up successfully. If enabled, a confirmation was sent to your e-mail.'
+      updated: 'You updated your account successfully'
+      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+    passwords:
+      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      updated: 'Your password was changed successfully. You are now signed in.'
+      field: 'Please, enter same email when you create account'
+    sessions:
+      signed_in: 'Signed in successfully'
+      signed_out: 'Signed out successfully'
+    unlocks:
+      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+      unlocked: 'Your account was successfully unlocked. You are now signed in.'
+  forgot_password: "Forgot you password?"
+  frontpage:
+    collaborate:
+      default: "Collaborate"
+      sentence1: "Organize your projects and activities"
+      sentence2: "Create your own groups"
+    elements:
+      comments: "Comments"
+      networks: "Social Networks"
+      organizers: "Organizers"
+      participants: "Participants"
+      groups: "Groups"
+      tags: "Tags"
+    main_title: "SocialStream is a core for building social network websites."
+    meet:
+      default: "Meet"
+      sentence1: "Meet interesting people and groups"
+    share:
+      default: "Share"
+      sentence1: "Your contacts and relations"
+      sentence2: "Posts, comments and activities"
+    stats: "%{users} users and %{groups} groups registered"
+  find: "Find"
+  group:
+    one: "Group"
+    other: "Groups"
+    all: "All groups"
+    by: "By groups"    
+    last: "Last groups"
+    my: "My groups"
+    new:
+      action: "New group"
+      name: "Name"
+      description: "Description"
+      participants: "Participants"
+    cloud: "Group tag cloud"
+    popular:
+      most: "Most popular"
+    voted:
+      most: "Most voted"
+  help: "Help"
+  home: "Home"
+  inbox:
+    one: "Inbox"
+  location:
+    message: "You are here > %{location}"
+    base: "You are here"
+    separator: " > "
+  menu:
+    options: "Menu Options"
+    information: "Information"
+    wall: "Wall"
+  message:
+    answer: "Write your answer"
+    inbox: "Inbox"
+    new: "New Message"
+    one: "Message"
+    other: "Messages"
+    participants: "Participants"
+    sentbox: "Sentbox"
+    trash: "Trash"
+    send: "Send a message"
+  password:
+    forgot: "Do you forgot your password?"
+  post:
+    confirm_delete: "Delete post?"
+  profile:
+    one: "Profile"
+    age: "Age"
+    group:
+      about: "About us"
+      birthday: "Anniversary"
+      experience: "Area of expertise"
+      info: "Group information"
+      tags: "Group tags"
+    user:
+      about: "About me"
+      birthday: "Birthday"
+      experience: "Experience"
+      info: "Personal information"
+      tags: "User tags"
+    actualcity: "Actual City"
+    address: "Address"
+    contact: "Contact information"
+    country: "Country"
+    email: "E-mail"
+    fax: "Fax"
+    mobile: "Mobile"
+    organization: "Organization"
+    phone: "Phone"
+    profile: "Edit profile"
+    website: "Website"      
+  public:
+    other: "Everybody"
+  representation:
+    action: "representing"
+    change: "Change"
+  service:
+    one: "Service"
+    other: "Services"
+  permissions:
+    read:
+      activity:
+        star_ties: "Allow %{user} to read my wall"
+      tie:
+        weak_star_ties: "Not defined"
+    follow: "Follow %{user}"
+    create: 
+         activity:
+             tie: "Allow %{user} to write in my wall"
+             weak_ties: "Not defined"
+  products:
+    one: "Product"
+    other: "Products"
+  relation:
+    public:
+      name: "Public"
+  share: "Share"
+  sign_in: "Sign in"
+  sign_out: "Sign out"
+  sign_up: "Sign up"
+  socialstream: "SocialStream"
+  tie:
+    add:
+      bookmark: "Bookmark"
+      contact: "Add contact as..."
+      follow: "Follow"
+      like: "Like"
+      partner: "Add Partner"
+    relation:
+      one: "Contact type"
+      new: "New type"
+    edit:
+      contact: "Contact: %{type}"
+      title: "Edit Contact"
+    new:
+      title: "Add New Contact"
+    pending:
+      other: "Pending requests"
+      all: "All"
+    suggestion:
+      one: "Suggestion"
+      other: "Suggestions"
+      all: "All"
+    options: "Tie options"
+  time:
+    ago: "%{time} ago"
+  user:
+    by: "By Users"
+    one: "User"
+    other: "Users"
+    all: "All users"
+    all_n: "All users (%{count})"
+  welcome: "Welcome to SocialStream!"
+

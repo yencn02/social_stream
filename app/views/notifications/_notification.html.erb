@@ -1,0 +1,41 @@
+<%= div_for(notification, :class => read_class + ' conversation') do %>
+
+<div class="notification">
+</div>
+<div class="sender_photo">
+  <%= link_to image_tag(current_subject.logo.url(:actor),
+  :title => current_subject.name, :alt => current_subject.name),
+  current_subject %>
+</div>
+<div class="content_left">
+  <div class="sender_name">
+    <%#= link_to conversation.last_sender.name, conversation.last_sender.subject %>
+  </div>
+  <div class="date">
+    <%= t('time.ago', :time => time_ago_in_words(notification.created_at)) %>
+  </div>
+</div>
+<div class="content_right">
+  <div class="subject">
+    <%= truncate(notification.subject, :length => 55) %>
+  </div>
+  <div class="briefing">
+    <%= raw decode_notification notification.body %>
+  </div>
+  <div class="clearfloat">
+  </div>
+</div>
+<div class="action">
+  <%= link_to(image_tag('btn/btn_notification_delete.png', :alt => "Mark as read", :title => "Mark as read"),
+  notification_path(notification, :page => params[:page], :read => "Read"),
+  :method => :put, :remote => true) %>
+</div>
+<div class="action">  
+  <%= link_to(image_tag('btn/btn_notification_delete.png', :alt => "Delete", :title => "Delete"),
+  notification_path(notification, :page => params[:page]),
+  :confirm => 'Do you want to delete "' + notification.subject,
+  :method => :delete, :remote => true) %>
+</div>
+<div class="clearfloat">
+</div>
+<% end %>

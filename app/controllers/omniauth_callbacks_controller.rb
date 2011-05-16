@@ -14,4 +14,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, :event => :authentication
     end
   end
+
+  def twitter
+    #print env['omniauth.auth']
+    @user = User.find_or_create_for_twitter_oauth(env['omniauth.auth'],current_user)
+    if @user.persisted?
+      sign_in_and_redirect @user, :event => :authentication
+    end
+  end
 end
+

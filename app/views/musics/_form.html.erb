@@ -1,0 +1,36 @@
+<%= form_for(@music, :class => "new_message", :html => { :multipart => true}) do |f| %>
+  <% if @music.errors.any? %>
+  <div class="error">
+    <h2><%= pluralize(@music.errors.count, "error") %> prohibited this message from being sent:</h2>
+      <ul>
+        <% @music.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+  </div>
+  <% end %>
+  <div class="block">
+    <div class="form_row">
+      <%= label_tag :title %>
+    </div>
+    <div class="form_row">
+      <%= f.text_field :title, :class => "required form_tag" %>
+    </div>
+    <div class="form_row">
+      <%= label_tag :description %>
+    </div>
+    <div class="form_row" id="ck_editor" >
+      <%= f.text_area :description, {:rows =>6, :cols=> 53, :class => "required form_tag", :maxlength => 5000} %>
+    </div>
+    <div class="form_row">
+      <%= label_tag "Choose music file" %>
+    </div>
+    <div class="form_row">
+      <%= f.file_field :music, :class => "required form_tag" %>
+    </div>
+    <div class="actions center">
+      <%= submit_tag "Upload", :name => :send_message, :class => "button" %>
+    </div>
+  </div>
+
+<% end %>

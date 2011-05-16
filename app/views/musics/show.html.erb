@@ -1,0 +1,50 @@
+<% toolbar :option => :media %>
+<% content_for :title do%>
+  <%= current_subject.name %>
+<% end%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'home/sidebar' %>
+<% end %>
+<% content_for :headers do %>
+  <%= javascript_include_tag 'jwplayer.js' %>
+<% end %>
+
+<%= location(
+  link_to(image_tag("btn/btn_music.gif", :class => "menu_icon")+ "Musics", musics_path)
+) %>
+
+<br class="clearfloat" />
+
+<div id="conversation">
+  <h2>Music details</h2>
+  <!-- START OF THE PLAYER EMBEDDING TO COPY-PASTE -->
+  <div style="padding:30px;">
+    <div class="form_row">
+      <label>Title:</label> <b><%= @music.title %></b>
+    </div>
+    <div class="form_row">
+      <label>Updated at:</label> <%= @music.music_updated_at %>
+    </div>
+    <div class="form_row" style ="padding-top: 15px; padding-bottom: 15px;">
+      <div id="mediaplayer">JW Player goes here</div>
+    </div>
+    <div class="form_row">
+      <%= @music.description %>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    jwplayer("mediaplayer").setup({
+      flashplayer: "../swf/player.swf",
+      file: "<%= @music.music.url %>",
+      height: 350,
+      width: 500
+    });
+  </script>
+  <!-- END OF THE PLAYER EMBEDDING -->
+  <div style="float:right; padding-right: 30px;">
+    <%= link_to 'Download', @music.music.url %> |
+    <%= link_to 'Edit', edit_music_path(@music) %> |
+    <%= link_to 'All Musics', musics_path %>
+  </div>
+</div>

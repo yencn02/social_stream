@@ -1,0 +1,75 @@
+= Social Stream: core for building social network websites
+Social Stream is an engine for Ruby on Rails. It provides a robust and flexible core
+with social networking features and activity streams for building websites.
+
+== Social networking
+Social networks are a new paradigm on web application design. Social networking platforms stand 
+among the most popular websites, while many content oriented applications are supporting social
+networking features in order to improve engagement, enhance user awareness and stimulate communities
+around the website.
+
+{Social Stream}[http://github.com/ging/social_stream] is based in
+{Social Network Analysis}[http://en.wikipedia.org/wiki/Social_network] concepts and methods,
+including social entities (actors), ties and relations. Social Stream is so flexible that you can
+define custom actors (groups, organizations, institutions, social events) and relationships
+(friends, collegues, members, administrators, contributors, attendants, speakers).
+
+It also provides a new tie-based access control model, which grants rights at the relation level,
+allowing you to share activities with friends, administrators, members or everybody.
+
+== Activity Streams
+{Activity Streams}[http://activitystrea.ms/] is a format for syndicating social activities around the web. It has already been adopted by some of the major social networking platforms.
+
+{Social Stream}[http://github.com/ging/social_stream] provides a database schema based on the
+{Activity Streams specification}[http://activitystrea.ms/head/activity-schema.html], leading your
+application towards a well-known compatible data model design. It is extensible so you can
+add your own activities easily.
+
+= Installation
+
+Add to your Gemfile:
+
+  gem 'social_stream'
+
+and run:
+
+  bundle update
+
+Then:
+
+  rails generate social_stream:install
+
+This will generate the following:
+* A jquery:install generation for jQuery support
+* A devise:install generation for authentication support
+* An initializer file with configuration for Social Stream.
+* A configuration file for defining custom Social Stream relations. You can define your application default relations at <tt>config/relations.yml</tt>
+* A new application layout
+* A migration providing the database schema
+
+Do not forget to migrate your database
+
+  rake db:migrate
+
+== Actors and Activity Objects
+
+{Social Stream}[http://github.com/ging/social_stream] relies in Devise[http://github.com/plataformatec/devise].
+You have authenticated users support in your application by default.
+
+Besides, there is another kind of actor: groups. If you want other type of actor
+(like organizations or social events) you must include an <tt>actor_id</tt> column in
+the new actor migration. Then add it to <tt>config/initializers/social_stream.rb</tt>
+
+There is also support for two types of basic activity objects: posts and comments.
+You can create other types, like photos, bookmarks or videos, but you must do the same: 
+add a <tt>activity_object_id</tt> column in the migration and include it in the
+initializer.
+
+= Documentation
+
+{Social Stream documentation is available at rdoc.info}[http://rubydoc.info/gems/social_stream/frames]
+
+= Discussion
+
+It is at an early stage of development.
+Feel free to add an issue or send a message at github[http://github.com/ging/social_stream].

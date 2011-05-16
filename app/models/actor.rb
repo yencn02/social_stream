@@ -48,7 +48,9 @@ class Actor < ActiveRecord::Base
 
   has_many :spheres
 
-  has_many :relations, :through => :spheres
+  has_many :relation_customs,
+           :through => :spheres, 
+           :source  => :customs
 
   scope :alphabetic, order('actors.name')
 
@@ -82,7 +84,7 @@ class Actor < ActiveRecord::Base
  
   after_create :create_initial_relations
   
-  after_create :create_profile
+  after_create :save_or_create_profile
   
   class << self
     # Get actor's id from an object, if possible
@@ -136,7 +138,7 @@ class Actor < ActiveRecord::Base
   
   # A given relation defined and managed by this actor
   def relation(name)
-    relations.find_by_name(name)
+    relation_customs.find_by_name(name)
   end
 
   # The {Relation::Public} for this {Actor} 
@@ -277,6 +279,29 @@ class Actor < ActiveRecord::Base
       allow?(subject, 'represent')
   end
 
+  # The set of ties from this {Actor} to itself.
+  def reflexive_ties
+    sent_ties.received_by(self)
+  end
+
+  # This Actor's public {Tie}
+  def public_tie
+    reflexive_ties.related_by(relation_public).first
+  end
+
+  # Find a tie to subject with the {#relation_public}
+  def public_tie_to(subject)
+    sent_ties.received_by(subject).related_by(relation_public).first
+  end
+
+  # Find or create a tie to subject with the {#relation_public}
+  def public_tie_to!(subject)
+    public_tie_to(subject) ||
+      sent_ties.create!(:receiver_id => Actor.normalize_id(subject),
+                        :relation_id => relation_public.id,
+                        :original    => false)
+  end
+
   # The ties that allow attaching an activity to them. This method is used for caching
   def active_ties
     @active_ties ||= {}
@@ -319,9 +344,9 @@ class Actor < ActiveRecord::Base
     ts = ties
 
     if type == :profile
-      return ties.public_relation if options[:for].blank?
-
-      ts = ts.allowing(options[:for], 'read', 'activity')
+      ts = ( options[:for].blank? ?
+               ts.public_relation :
+               ts.allowing(options[:for], 'read', 'activity') )
     end
 
     if options[:relation].present?
@@ -357,11 +382,18 @@ class Actor < ActiveRecord::Base
   # Build a new activity where subject like this
   def new_like(subject)
     a = Activity.new :verb => "like",
-                     :_tie => subject.ties_to(self).first
+                     :_tie => subject.public_tie_to!(self)
     
     a.activity_objects << activity_object           
                     
     a             
+  end
+  
+  #Returning whether an email should be sent for this object (Message or Notification).
+  #Required by Mailboxer gem.
+  def should_email?(object)
+    #TODO
+    return true
   end
   
   private
@@ -370,5 +402,17 @@ class Actor < ActiveRecord::Base
   def create_initial_relations
     Relation::Custom.defaults_for(self)
     Relation::Public.default_for(self)
+  end
+
+  # After create callback
+  #
+  # Save the profile if it is present. Otherwise create it
+  def save_or_create_profile
+    if profile.present?
+      profile.actor_id = id
+      profile.save!
+    else
+      create_profile
+    end
   end
 end

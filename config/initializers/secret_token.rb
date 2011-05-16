@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-SocialStream::Application.config.secret_token = 'a6e1d958e9b966ccfa98502289f250a793b44ad6a978c8a13db0b4045baf1146017413f529df80fd7edd05c50396991dacb1e0015337ee89c4e67e7df34d08d1'
+Sosialisation::Application.config.secret_token = '1c8bd1838869980afaa62291c1e4f19df9648d886f959fbbde096aa31bb1186812116f5773ffd342deac4cc9105186170e9e35cec3f58b06913ba20515572baa'

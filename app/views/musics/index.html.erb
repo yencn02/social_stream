@@ -1,0 +1,51 @@
+<% toolbar :option => :media %>
+<% content_for :title do%>
+  <%= current_subject.name %>
+<% end%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'home/sidebar' %>
+<% end %>
+
+<%= location(
+  link_to(image_tag("btn/btn_music.gif", :class => "menu_icon")+ "Musics", musics_path)
+) %>
+
+<br class="clearfloat" />
+<div id="conversation">
+  <h2>All Musics</h2>
+  <div>
+    <% if @musics.total_pages > 1 %>
+    <div style="margin: 10px; padding: 10px; border-top: thin solid #D4E4EA;">
+      <div style="float:right"><%= will_paginate @musics %></div>
+    </div>
+    <% end %>
+    <% @musics.each_with_index do |music, i| %>
+      <div style="margin: 10px; padding: 10px; border-top: thin solid #D4E4EA;">
+        <div class="form_row">
+          <label>Title:</label><b> <%= music.title %></b>
+        </div>
+        <div class="form_row">
+          <label>Description:</label> <%= music.description %>
+        </div>
+        <div class="form_row">
+          <label>Updated at:</label> <%= music.music_updated_at %>
+        </div>
+        <div style="float:right;">
+          <%= link_to 'Download', music.music.url %> |
+          <%= link_to 'Show', music %> |
+          <%= link_to 'Edit', edit_music_path(music) %> |
+          <%= link_to 'Destroy', music, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+      </div>
+    <% end %>
+    <% if @musics.total_pages > 1 %>
+    <div style="margin: 10px; padding: 10px; border-top: thin solid #D4E4EA;">
+      <div style="float:right"><%= will_paginate @musics %></div>
+    </div>
+    <% end %>
+    <div style="margin: 10px; padding: 10px; border-top: thin solid #D4E4EA;">
+      <%= link_to 'Add New Music', new_music_path, :style => "float: right;"%>
+    </div>
+  </div>
+ 
+</div>

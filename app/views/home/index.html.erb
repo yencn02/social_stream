@@ -2,9 +2,10 @@
   <% render :partial => 'sidebar' %>
 <% end %>
 
+<%= location(link_to(image_tag("btn/btn_home.png", :class => "btn_config")+t('home')+": "+
+                      content_tag(:span, ( sanitize current_subject.name), :class=>"name_group")))%>
+                      
 <% toolbar %>
-
-<%= render :partial => 'location' %>
 
 <br class="clearfloat" />
 <div class="space_center">

@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-SocialStream::Application.load_tasks
+Sosialisation::Application.load_tasks

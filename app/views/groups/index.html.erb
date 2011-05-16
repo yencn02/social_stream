@@ -11,11 +11,9 @@
 <% content_for :sidebar do %>
 	<%= render :partial => "groups/sidebar_index" %>
 <% end %>
-
-<div id="map_location" class="content_size">
-  Your are here ><img src="images/btn/btn_browse.png" class="btn_config"> <%=t('browse')%>: <span id="name_group"><b><%= t('group.all')%></b></span>, <%= link_to(t('user.by'), users_path) %>
-</div>
-
+<%= location(image_tag("btn/btn_browse.png", :class=>"btn_config") + t('browse') +": "+ 
+             link_to(t('user.by'), users_path) + ", "+ 
+             content_tag(:b,content_tag(:span, t('group.all'), :id=>'name_group')))%>
 
 <div class="space_center"></div>
 <div class="space_center"></div>
@@ -26,13 +24,13 @@
   <div id="tab" class="widget content_size">
     <ul class="tab">
       <li>
-          <a href="/groups">All <%= t('group.other')%> (<%=Group.count%>) </a>
+        <%= link_to t('group.all_n', :count => Group.count), :most => nil %>
       </li>
       <li>
-          <a href="#most_popular"> <%= t('group.popular.most')%></a>
+        <%= link_to t('group.most.followed'), :most => :followed %>
       </li>
       <li>
-          <a href="#most_voted"> <%= t('group.voted.most')%> </a>
+        <%= link_to t('group.most.liked'), :most=> :liked %>
       </li>
     </ul>
     <div id="spaces" class="tab">

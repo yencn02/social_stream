@@ -1,0 +1,11 @@
+.bundle
+pkg/*gem
+**.tmp_*
+Gemfile.lock
+.idea
+nbproject
+.loadpath
+.project
+.DS_Store
+.yardoc/*
+lib/generators/social_stream/templates/public/images/tmp/

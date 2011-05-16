@@ -1,0 +1,54 @@
+<% toolbar :option => :media %>
+<% content_for :title do%>
+  <%= current_subject.name %>
+<% end%>
+<% content_for :sidebar do %>
+  <%= render :partial => 'home/sidebar' %>
+<% end %>
+
+<%= location(
+  link_to(image_tag("btn/btn_pdf.jpeg", :class => "menu_icon")+ "PDF Files", pdfs_path)
+) %>
+
+<br class="clearfloat" />
+<div id="conversation">
+  <h2>All PDF files</h2>
+  <div>
+    <% if @pdfs.total_pages > 1 %>
+      <div style="margin: 10px; padding: 10px; border-top: thin solid #D4E4EA;">
+        <div style="float:right"><%= will_paginate @pdfs %></div>
+      </div>
+    <% end %>
+    <% @pdfs.each_with_index do |pdf, i| %>
+      <div style="margin: 10px; padding: 10px; border-top: thin solid #D4E4EA;">
+        <div class="form_row">
+          <label>Title:</label><b> <%= pdf.title %></b>
+        </div>
+        <div class="form_row">
+          <label>Description:</label> <%= pdf.description %>
+        </div>
+        <div class="form_row">
+          <label>File name: </label> <%= link_to pdf.pdf_file_name, pdf.pdf.url %>
+        </div>
+        <div class="form_row">
+          <label>Updated at:</label> <%= pdf.pdf_updated_at %>
+        </div>
+        <div style="float:right;">
+          <%= link_to 'Download', pdf.pdf.url %> |
+          <%= link_to 'Show', pdf %> |
+          <%= link_to 'Edit', edit_pdf_path(pdf) %> |
+          <%= link_to 'Destroy', pdf, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+      </div>
+    <% end %>
+    <% if @pdfs.total_pages > 1 %>
+      <div style="margin: 10px; padding: 10px; border-top: thin solid #D4E4EA;">
+        <div style="float:right"><%= will_paginate @pdfs %></div>
+      </div>
+    <% end %>
+    <div style="margin: 10px; padding: 10px; border-top: thin solid #D4E4EA;">
+      <%= link_to 'Add New PDF File', new_pdf_path, :style => "float: right;"%>
+    </div>
+  </div>
+
+</div>
