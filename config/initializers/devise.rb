@@ -183,7 +183,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   #config.omniauth :linked_in, "ekxfXU8nueVSMQ9fc5KJAryBkyztUlCBYMW3DoQPzbE79WhivvzhQloRNHCHgPeB", "WYiHFT-KKFgjd45W3-pEAficmXRHmN6_6DGwj1C_ZILJlSO1gBvv6VNYXU9tybGY"
 
-  config.omniauth :linked_in, "1UDBJ6FcJ6BphRulc5_Y_n1TETgt9cFNfTj9SB1IKWy4_xoIg3BFhN16VE_B7vTH", "VhWvRGiRHychZ_vCwh7UjlVH2DbSVOqm5dT-olBbw2Bgx2uoh568GMeiTN0NOla8"
+  config.omniauth :linked_in, "Hc9L7nHNKMuTnSnfgJ7V2-uyV2TXevM4pK2j8u5y2pKl7wKeMBV4_eXbibYDYW8D", "64HQEqCtrs44rGGegkLKkXkeioh5lJbD4RCYKkVaJFOr34h-zGG2tYm5G8dta4u2"
 
 
   #config.omniauth :facebook, "129571360447856","eef39dce5e20e76f77495c59623bdb38"
