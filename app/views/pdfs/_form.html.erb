@@ -1,4 +1,8 @@
-<%= form_for(@pdf, :class => "new_message", :html => { :multipart => true}) do |f| %>
+<% content_for :headers do %>
+  <%= stylesheet_link_tag "progress" %>
+  <%= javascript_include_tag "upload" %>
+<% end %>
+<%= form_for(@pdf, :class => "new_message", :html => {:id => :submit_form,  :multipart => true}) do |f| %>
   <% if @pdf.errors.any? %>
   <div class="error">
     <h2><%= pluralize(@pdf.errors.count, "error") %> prohibited this message from being sent:</h2>
@@ -29,7 +33,8 @@
       <%= f.file_field :pdf, :class => "required form_tag" %>
     </div>
     <div class="actions center">
-      <%= submit_tag "Upload", :name => :send_message, :class => "button" %>
+      <%= render :partial => "/toolbar/upload_progress" %>
+      <%= submit_tag "Upload", :id => "submit", :class => "button" %>
     </div>
   </div>
 

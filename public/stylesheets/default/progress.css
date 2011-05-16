@@ -1,0 +1,25 @@
+#ProgressBarContainer {
+  padding: 10px 20px; font-weight: bold;
+}
+#ProgressBarContainer .prog-border {
+  height: 30px;
+  width: 570px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  font-family: "helvetica",arial,sans-serif; font-size: 11px; color: #000;
+}
+
+#ProgressBarContainer .prog-bar {
+  height: 30px;
+  padding: 0;
+  background: #00b9eb;
+  font-family: "helvetica",arial,sans-serif; font-size: 12px; color: FFF;
+  font-weight: bold;
+}
+#ProgressBarContainer #ProgressBarText {
+  float: right;
+}
