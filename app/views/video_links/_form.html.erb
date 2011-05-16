@@ -34,6 +34,7 @@
     <div class="form_row" id="ck_editor" >
       <%= f.text_area :description, {:rows =>6, :cols=> 53, :class => "required form_tag", :maxlength => 5000} %>
     </div>
+    <input type="hidden" value="1" name="video_link[_activity_tie_id]"/>
     <div class="actions center">
       <%= submit_tag "Upload", :name => :send_message, :class => "button" %>
     </div>

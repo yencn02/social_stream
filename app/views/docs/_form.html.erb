@@ -32,6 +32,7 @@
     <div class="form_row">
       <%= f.file_field :doc, :class => "required form_tag" %>
     </div>
+    <input type="hidden" value="1" name="doc[_activity_tie_id]"/>
     <div class="actions center">
       <%= render :partial => "/toolbar/upload_progress" %>
       <%= submit_tag "Upload", :id => "submit", :class => "button" %>
