@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "webmaster@Scholarshipsofrthearts.com"
+  config.mailer_sender = "yencn02@gmail.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -189,7 +189,7 @@ Devise.setup do |config|
   #config.omniauth :facebook, "129571360447856","eef39dce5e20e76f77495c59623bdb38"
 
   #dev mode:
-  config.omniauth :facebook, "74610884509","a96a6075d44be4f32e8eaa9797ee5fd3"
+  config.omniauth :facebook, "222146264463779","cebb7b52274d769bb433904626da516b"
   config.omniauth :twitter, "3wY2A225nqE9kEdonz38Gw","7UjrkIMuWt6HLppAVr4YacUW5Ol3tZrZNm0zwUJYIPs"
   #prod mode
   #config.omniauth :facebook, "173903390244","8de1523593cfe851b7567b1c244c6803"

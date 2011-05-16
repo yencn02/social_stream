@@ -10,9 +10,7 @@ gem 'mysql'
 gem 'social_stream'
 gem 'devise', :path => "vendor/gems/devise-1.3.4"
 gem 'oa-oauth', :path => "vendor/gems/oa-oauth-0.2.5"
-gem 'oauth2', '~> 0.4.1'
 gem 'multi_xml', '0.2.2'
-gem 'faraday', '~> 0.6.1'
 gem 'nokogiri'
 
 # Use unicorn as the web server
